@@ -1,2 +1,2 @@
-# tepi2
-Repositório da turma Tópicos Especiais Para Internet - 2 
+# tepi
+Repositório da turma Tópicos Especiais Para Internet
