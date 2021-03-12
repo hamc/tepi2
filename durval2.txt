@@ -1,0 +1,71 @@
+
+
+/* 1 - Tabela Agencia*/
+create table agencia(
+numAgencia serial Primary Key,
+nomeAgencia varchar(50), 
+cidadeAgencia varchar(50)
+);
+
+ 
+/* 2 - Tabela Cliente*/
+create table cliente(
+cpfCliente varchar(14), 
+nomecliente varchar(50), 
+ruacliente varchar(50), 
+numerocliente smallint, 
+cidadecliente varchar(50),
+Primary Key(cpfCliente)
+);
+
+
+/* 3 - Tabela Emprestimo*/
+create table emprestimo(
+idEmprestimo serial Primary Key, 
+valorEmprestimo float,
+numAgencia int,
+CONSTRAINT FK_agencia_numAgencia FOREIGN KEY (numAgencia)
+REFERENCES agencia(numAgencia)
+);
+
+/* 4 - Tabela Conta*/
+create table conta(
+idConta serial Primary Key,
+saldoConta float,
+numAgencia int,  
+CONSTRAINT FK_numAgencia FOREIGN KEY (numAgencia)
+REFERENCES agencia(numAgencia)
+);
+
+/* 5 - Tabela Devedor*/
+create table devedor(
+idDevedor serial Primary Key,
+cpfCliente varchar, 
+idEmprestimo int,
+CONSTRAINT FK_cpfCliente FOREIGN KEY (cpfCliente)
+    REFERENCES cliente(cpfCliente),
+CONSTRAINT FK_idEmprestimo FOREIGN KEY (idEmprestimo)
+    REFERENCES emprestimo(idEmprestimo)
+);
+
+/* 6 - Tabela Depositante*/
+create table depositante(
+idDepositante serial Primary Key, 
+cpfcliente varchar,
+idConta int,
+CONSTRAINT FK_cpfCliente FOREIGN KEY (cpfCliente)
+    REFERENCES cliente(cpfCliente),
+CONSTRAINT FK_idConta FOREIGN KEY (idConta)
+    REFERENCES conta(idConta)
+);
+
+/* 7 - Tabela Telefone Cliente*/
+create table telcliente(
+idTelCliente serial Primary Key, 
+Numtel varchar(20),
+cpfCliente varchar,
+CONSTRAINT FK_cpfCliente FOREIGN KEY (cpfCliente)
+    REFERENCES cliente(cpfCliente) 
+);
+show tables; 
+select * from agencia;
